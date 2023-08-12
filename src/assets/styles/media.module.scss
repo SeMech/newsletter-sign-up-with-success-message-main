@@ -1,0 +1,8 @@
+$S: 375px;
+$M: 1440px;
+
+@mixin mediaM () {
+  @media (min-width: $M) {
+    @content;
+  }
+}

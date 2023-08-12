@@ -1,0 +1,304 @@
+@use "../../assets/styles/colors.module" as *;
+@use "../../assets/styles/media.module" as *;
+
+@mixin icon {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 21px;
+  height: 21px;
+
+  background-image: url("../../assets/images/icon-list.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@mixin button {
+  height: 56px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  outline: none;
+
+  border-radius: 8px;
+  background-color: $COLOR_DARK_SLATE_GREY;
+
+  color: $COLOR_WHITE;
+  font-family: "Roboto Bold", sans-serif;
+  font-size: 16px;
+  line-height: 140%;
+
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient(135deg, #FF5479 0%, #FF683E 100%);
+      box-shadow: 0px 8px 30px -4px #FF6646;
+    }
+  }
+}
+
+.formContainer {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  background-color: $COLOR_WHITE;
+
+  @include mediaM {
+    width: auto;
+    min-height: auto;
+
+    flex-direction: row-reverse;
+    border-radius: 36px;
+
+    padding: 24px 24px 24px 64px;
+  }
+
+  .image {
+    width: 100vw;
+    max-width: 375px;
+
+    height: calc(100vw / 1.31);
+    max-height: 284px;
+
+    background: url("../../assets/images/illustration-sign-up-mobile.svg") no-repeat;
+    background-size: contain;
+
+    margin-bottom: 40px;
+
+    @include mediaM {
+      width: 400px;
+      height: 593px;
+      max-width: none;
+      max-height: none;
+      margin-bottom: 0;
+      margin-left: 64px;
+
+      background-image: url("../../assets/images/illustration-sign-up-desktop.svg");
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    width: 375px;
+    padding: 0 24px;
+
+    @include mediaM {
+      width: 376px;
+      padding: 0;
+    }
+
+    .title {
+      font-family: "Roboto Bold", sans-serif;
+      font-size: 40px;
+      margin-bottom: 24px;
+      line-height: 100%;
+
+      @include mediaM {
+        margin-bottom: 30px;
+        font-size: 54px;
+        letter-spacing: 1.08px;
+      }
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 150%;
+
+      margin-bottom: 25px;
+
+      @include mediaM {
+        line-height: 20px;
+        margin-bottom: 28px;
+      }
+    }
+
+    .list {
+      margin-bottom: 45px;
+
+      .row {
+        position: relative;
+        min-height: 21px;
+        padding-left: 37px;
+
+        font-size: 16px;
+        line-height: 140%;
+
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
+
+        &::after {
+          @include icon;
+        }
+      }
+
+      @include mediaM {
+        .row {
+          line-height: 105%;
+
+          &:not(:last-child) {
+            margin-bottom: 13px;
+          }
+        }
+      }
+    }
+
+    .inputWrapper {
+      margin-bottom: 24px;
+
+      --text-color: #{$COLOR_DARK_SLATE_GREY};
+
+      &.errorState {
+        --text-color: #{$COLOR_TOMATO};
+
+        .input {
+          border-color: var(--text-color);
+          background-color: hsla(5, 100%, 95%, 1);
+        }
+      }
+
+      .labelWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 11px;
+      }
+
+      .label {
+        display: block;
+
+        font-family: "Roboto Bold", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.55px;
+      }
+
+      .labelError {
+        @extend .label;
+        color: $COLOR_TOMATO;
+      }
+
+      .input {
+        width: 100%;
+        height: 56px;
+        padding: 10px 24px;
+
+        outline: none;
+        background: none;
+        border: 1px solid hsla(0, 0%, 77%, 1);
+        border-radius: 8px;
+
+        font-size: 16px;
+        line-height: 100%;
+        color: var(--text-color);
+
+        &:focus {
+          border-color: var(--text-color);
+        }
+
+        &::placeholder {
+          color: hsla(0, 0%, 77%, 1)
+        }
+      }
+
+      @include mediaM {
+        .label {
+          font-size: 12px;
+          letter-spacing: 0;
+        }
+      }
+    }
+
+    .sendButton {
+      @include button;
+    }
+  }
+}
+
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 149px 24px 40px;
+
+  background-color: $COLOR_WHITE;
+
+  @include mediaM {
+    justify-content: flex-start;
+    width: 504px;
+    height: auto;
+    border-radius: 36px;
+    padding: 48px 64px 64px;
+  }
+
+  .contentContainer {
+    width: 327px;
+
+    .successIcon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 40px;
+
+      background-image: url("../../assets/images/icon-success.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .title {
+      font-family: "Roboto Bold", sans-serif;
+      font-size: 40px;
+      line-height: 100%;
+      margin-bottom: 28px;
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 22px;
+
+      b {
+        font-family: "Roboto Bold", sans-serif;
+      }
+    }
+
+    @include mediaM {
+      width: 100%;
+
+      .successIcon {
+        margin-bottom: 42px;
+      }
+
+      .title {
+        font-size: 54px;
+        letter-spacing: 1.08px;
+      }
+
+      .description {
+        margin-bottom: 44px;
+      }
+    }
+  }
+
+  .okButton {
+    @include button;
+    width: 327px;
+
+    @include mediaM {
+      width: 100%;
+    }
+  }
+}
+
